@@ -22,7 +22,7 @@ Dataset Link: [Movies Dataset](https://www.kaggle.com/datasets/shivamb/netflix-s
 
 ## Schema
 
-'''sql
+```sql
 DROP TABLE IF EXISTS netflix;
 CREATE TABLE netflix
 
@@ -42,7 +42,7 @@ CREATE TABLE netflix
 	description VARCHAR(250)
 
 );
-'''
+```
 
 SELECT * FROM netflix;
 
