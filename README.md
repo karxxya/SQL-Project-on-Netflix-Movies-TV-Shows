@@ -44,29 +44,21 @@ CREATE TABLE netflix
 );
 ```
 
-SELECT * FROM netflix;
-
-SELECT
-COUNT(*) as total_content 
-FROM netflix;
-
-SELECT DISTINCT type 
-FROM netflix;
-
-SELECT * FROM netflix
-
 ## Business Problems and Solutions
 
 ### 1. Count the number of Movies vs TV Shows
 
+```sql
 SELECT
 	type,
 	COUNT(*) as total_content
 FROM netflix
 GROUP BY type
+```
 
-2. Find the most common rating for movies and TV shows
+### 2. Find the most common rating for movies and TV shows
 
+```sql
 SELECT 
 	type,
 	rating
@@ -83,9 +75,11 @@ FROM
 )as tl
 WHERE
 	ranking = 1
+```
 
-3. List all movies released in a specific year (e.g., 2020)
+### 3. List all movies released in a specific year (e.g., 2020)
 
+```sql
 --filter 2020
 --movies
 
@@ -94,9 +88,11 @@ WHERE
 	type = 'Movie'
 	AND
 release_year = 2020
+```
 
-4. Find the top 5 countries with the most content on Netflix
+### 4. Find the top 5 countries with the most content on Netflix
 
+```sql
 SELECT
 	UNNEST (STRING_TO_ARRAY (country, ',')) as new_country,
 	COUNT (show_id) as total_content
@@ -104,14 +100,16 @@ FROM netflix
 GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 5
+```
 
-5. Identify the longest movie or TV show duration
-
+### 5. Identify the longest movie or TV show duration
+```sql
 SELECT * FROM netflix
 WHERE
 	type = 'Movie'
 	AND
 	duration = (SELECT MAX(duration) FROM netflix)
+```
 
 6. Find content added in the last 5 years
 
