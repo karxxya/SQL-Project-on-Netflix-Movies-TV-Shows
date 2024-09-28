@@ -111,8 +111,9 @@ WHERE
 	duration = (SELECT MAX(duration) FROM netflix)
 ```
 
-6. Find content added in the last 5 years
+### 6. Find content added in the last 5 years
 
+```sql
 SELECT
 	*
 FROM netflix
@@ -120,14 +121,16 @@ WHERE
 	TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE-INTERVAL '5 years'
 	
 SELECT CURRENT_DATE-INTERVAL '5 years'
+```
 
-7. Find all the movies/TV shows by director 'Masahiko Murata'!
-
+### 7. Find all the movies/TV shows by director 'Masahiko Murata'!
+```sql
 SELECT * FROM netflix
 WHERE director ILIKE '%Masahiko Murata%'
+```
 
-8. List all TV shows with more than 8 seasons
-
+### 8. List all TV shows with more than 8 seasons
+```sql
 SELECT
 	*
 FROM netflix
@@ -138,17 +141,19 @@ WHERE
 
 SELECT
 	SPLIT_PART('Apple Banana Cherry', '', 1)
+```
 
-9. Count the number of content items in each genre
-
+### 9. Count the number of content items in each genre
+```sql
 SELECT
 	UNNEST (STRING_TO_ARRAY(listed_in, ',')) as genre,
 	COUNT (show_id) as total_content
 FROM netflix
 GROUP BY 1
+```
 
-10. Find the average release year for content produced in a specific country
-
+### 10. Find the average release year for content produced in a specific country
+```sql
 total content 333/972
 
 SELECT
@@ -160,29 +165,31 @@ SELECT
 FROM netflix
 WHERE country = 'India'
 GROUP BY 1
+```
 
-11. List all movies that are documentaries
-
+### 11. List all movies that are documentaries
+```sql
 SELECT * FROM netflix
 WHERE
 	listed_in ILIKE '%documentaries%'
+```
 
-12. Find all content without a director
-
+### 12. Find all content without a director
+```sql
 SELECT * FROM netflix
 WHERE
 	director IS NULL
-
-13. Find how many movies actor 'Kamal Hassan' appeared in last 50 years!
-
+```
+### 13. Find how many movies actor 'Kamal Hassan' appeared in last 50 years!
+```sql
 SELECT * FROM netflix
 WHERE
 	casts ILIKE '%Kamal Hassan%'
 	AND
 	release_year > EXTRACT(YEAR FROM CURRENT_DATE) - 50
-
-14. Find the top 10 actors who have appeared in the highest number of movies produced in
-
+```
+### 14. Find the top 10 actors who have appeared in the highest number of movies produced in
+```sql
 SELECT
 UNNEST(STRING_TO_ARRAY(casts, ',')) as actors,
 COUNT(*) as total_content
@@ -191,9 +198,10 @@ WHERE country ILIKE '%india'
 GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 10
+```
 
-15.Categorize the content based on the presence of the keywords 'kill' and 'violence' in che description field. Label content containing these keywords as 'Bad' and all other content as 'Good'. Count how many items fall into each category.
-
+### 15.Categorize the content based on the presence of the keywords 'kill' and 'violence' in che description field. Label content containing these keywords as 'Bad' and all other content as 'Good'. Count how many items fall into each category.
+```sql
 WITH new_table
 AS
 (
@@ -212,3 +220,4 @@ SELECT
 	COUNT(*) as total_content
 FROM new_table
 GROUP BY 1
+```
