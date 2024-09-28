@@ -15,3 +15,6 @@ Explore and categorize content based on specific criteria and keywords.
 
 ## Dataset
 
+The Data for this Project is sourced from the Kaggle Dataset:
+
+Dataset Link: (https://www.kaggle.com/datasets/shivamb/netflix-shows?resource=download)
