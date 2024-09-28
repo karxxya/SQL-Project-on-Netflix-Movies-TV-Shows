@@ -27,8 +27,7 @@ DROP TABLE IF EXISTS netflix;
 CREATE TABLE netflix
 
 (
-
-	show_id VARCHAR(6),
+show_id VARCHAR(6),
 	type VARCHAR(10),
 	title VARCHAR(150),
 	director VARCHAR(208),
@@ -40,7 +39,6 @@ CREATE TABLE netflix
 	duration VARCHAR(15),
 	listed_in VARCHAR(100),
 	description VARCHAR(250)
-
 );
 ```
 
